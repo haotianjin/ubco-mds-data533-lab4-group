@@ -9,7 +9,17 @@ class TestNurse(unittest.TestCase):
     def setUp(self):
         self.n1 = n.Nurse('Tess',18,"5436890982",3200,25)
         self.n2 = n.Nurse('Melissa',40,"8920953924",9000,5)
-    
+
+    def test_init(self):
+        self.assertEqual(self.n1.name,"Tess")
+        self.assertEqual(self.n1.age,18)
+        self.assertEqual(self.n1.phone_num,"5436890982")
+        self.assertEqual(self.n1.salary,3200)
+        self.assertEqual(self.n1.number_treated,25)
+
+    def test_display(self):
+        self.assertEqual(self.n1.display(),"Nurse {} is {} years old. \nThe best number to reach out is {}. \nThe nurse's salary is {}. \nThe nurse has treated {} patients.\n".format('Tess',18,"5436890982",3200,25))
+
     def test_change_in_phone_num(self):
         self.n1.change_in_phone_num("1234567890")
         self.n2.change_in_phone_num("0987654321")
@@ -19,12 +29,12 @@ class TestNurse(unittest.TestCase):
         self.assertEqual(self.n2.phone_num,"6547381029")
 
     def test_change_in_salary(self):
-        self.n1.change_in_salary(9000)
-        self.n2.change_in_salary(10000)
+        self.n1.change_in_salary()
+        self.n2.change_in_salary()
         self.assertEqual(self.n1.salary,9000)
         self.assertEqual(self.n2.salary,10000)
-        self.n1.change_in_salary(8000)
-        self.n2.change_in_salary(120000)
+        self.n1.change_in_salary()
+        self.n2.change_in_salary()
         self.assertEqual(self.n1.salary,8000)
         self.assertEqual(self.n2.salary,120000)
 
@@ -44,3 +54,4 @@ class TestNurse(unittest.TestCase):
     def tearDownClass(cls):
         print("Finish test nurse")
 
+unittest.main(argv=[''], verbosity=2, exit=False)
