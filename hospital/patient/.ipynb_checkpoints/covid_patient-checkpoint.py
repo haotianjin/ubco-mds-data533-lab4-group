@@ -1,4 +1,11 @@
 import hospital.patient.patients as pt
+
+class NotValidValue(Exception):
+    def __init__ (self):
+        pass
+    def display(self):
+        return "Please enter a list or string."
+
 class CovidPatient(pt.GeneralPatient):
     def __init__(self, name, age, date, height, weight, symptom):
         pt.GeneralPatient.__init__(self, name, age, date, height, weight, symptom)
@@ -23,23 +30,23 @@ class CovidPatient(pt.GeneralPatient):
         return pt.GeneralPatient.addition_symptom(self,new_symp)
     
     def recovered_symptom(self, rec_symptoms):
-        if type(rec_symptoms) == list:
-            for i in rec_symptoms:
-                if i in self.symptom:
+        try:
+            if type(rec_symptoms) == list:
+                for i in rec_symptoms:
                     self.symptom.remove(i)
-                else:
-                    return "Symptom {} is not in the list, please provide correct information.".format(i)
-        elif type(rec_symptoms) == str:
-            if rec_symptoms in self.symptom:
-                    self.symptom.remove(rec_symptoms)
+            elif type(rec_symptoms) == str:
+                self.symptom.remove(rec_symptoms)
             else:
-                return "This symptom is not in the list, please provide correct information."
+                raise NotValidValue
+        except ValueError:
+            return "Symptom is not in the list, please provide symptoms from existed list."
+        except NotValidValue as nvv:
+            return nvv.display()
         else:
-            return "Please enter valid symptoms as list or string."
-        if not self.symptom:
-            self.doc_approve = True
-            return "This patient has been recorvered already, please check test result."
-            
+            if not self.symptom:
+                self.doc_approve = True
+                return "This patient has been recorvered already, please check test result."
+
     def test_result(self, test):
         if test == 'negative':
             self.covid_test = False
