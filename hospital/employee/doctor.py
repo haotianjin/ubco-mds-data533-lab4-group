@@ -1,6 +1,6 @@
 class SalaryError(Exception):
     def __init__(self):
-        print("The salary is invalid.")
+        pass
     
 class Doctor:
     def __init__(self,name,age,phone_num,salary,number_treated):
@@ -13,18 +13,20 @@ class Doctor:
     def change_in_phone_num(self,phone_num):
         self.phone_num = phone_num
 
-    def change_in_salary(self):
-        salary = int(input("Please enter the new salary > 0: "))
+    def change_in_salary(self,salary):
 
-        if salary < 0:
-            raise SalaryError
+        try: 
+            if salary < 0:
+                raise SalaryError
+        except SalaryError:
+            return("Invalid salary.")
         else:
             self.salary = salary
     
     def bonus(self):
         bonus = 20 * self.number_treated
         self.salary += bonus
-        print("This doctor's bonus salary is {}\nWith bonus salary, the doctor's total salary is {}"
+        return("This doctor's bonus salary is {}\nWith bonus salary, the doctor's total salary is {}"
               .format(bonus,self.salary))
 
     def display(self):

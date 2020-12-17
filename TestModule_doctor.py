@@ -24,17 +24,20 @@ class TestDoctor(unittest.TestCase):
         self.d1.change_in_phone_num("1234567890")
         self.d2.change_in_phone_num("0987654321")
         self.assertEqual(self.d1.phone_num,"1234567890")
-        self.assertEqual(self.d1.phone_num,"3132334567")
         self.assertEqual(self.d2.phone_num,"0987654321")
+        self.d1.change_in_phone_num("3132334567")
+        self.d2.change_in_phone_num("6547381029")
+        self.assertEqual(self.d1.phone_num,"3132334567")
         self.assertEqual(self.d2.phone_num,"6547381029")
 
     def test_change_in_salary(self):
-        self.d1.change_in_salary()
-        self.d2.change_in_salary()
+        self.d1.change_in_salary(9000)
+        self.d2.change_in_salary(10000)
         self.assertEqual(self.d1.salary,9000)
         self.assertEqual(self.d2.salary,10000)
-        self.d1.change_in_salary()
-        self.d2.change_in_salary()
+        self.assertEqual(self.d1.change_in_salary(-50),"Invalid salary.")
+        self.d1.change_in_salary(80)
+        self.d2.change_in_salary(100)
         self.assertEqual(self.d1.salary,80)
         self.assertEqual(self.d2.salary,100)
 
@@ -43,8 +46,6 @@ class TestDoctor(unittest.TestCase):
         self.d2.bonus()
         self.assertEqual(self.d1.salary,3700)
         self.assertEqual(self.d2.salary,9100)
-        self.assertEqual(self.d1.salary,90)
-        self.assertEqual(self.d2.salary,100)
     
     def tearDown(self):
         self.d1 = None
