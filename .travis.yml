@@ -4,3 +4,5 @@ python:
 script:
 - python TestModule_patients.py
 - python TestModule_covid_patient.py
+- python TestModule_nurse.py
+- python TestModule_doctor.py

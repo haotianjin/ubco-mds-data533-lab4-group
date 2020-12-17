@@ -1,3 +1,6 @@
+class SalaryError(Exception):
+    def __init__(self):
+        pass
 class Nurse:
     def __init__(self,name,age,phone_num,salary,number_treated):
         self.name = name
@@ -10,7 +13,13 @@ class Nurse:
         self.phone_num = phone_num
 
     def change_in_salary(self,salary):
-        self.salary = salary
+        try:
+            if salary < 0:
+                raise SalaryError
+        except SalaryError:
+            return "Invalid salary."
+        else:
+            self.salary = salary
     
     def bonus(self):
         bonus = 10 * self.number_treated
@@ -19,4 +28,4 @@ class Nurse:
               .format(bonus,self.salary))
 
     def display(self):
-        print("Nurse {} is {} years old. \nThe best number to reach out is {}. \nThe nurse's salary is {}. \nThe nurse has treated {} patients.\n".format(self.name,self.age,self.phone_num,self.salary,self.number_treated))
+        return("Nurse {} is {} years old. \nThe best number to reach out is {}. \nThe nurse's salary is {}. \nThe nurse has treated {} patients.\n".format(self.name,self.age,self.phone_num,self.salary,self.number_treated))
