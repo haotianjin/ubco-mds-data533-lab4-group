@@ -2,6 +2,8 @@
 
 ## Package name: hospital
 
+[![Build Status](https://travis-ci.com/haotianjin/ubco-mds-data533-lab4-group.svg?token=2Spxnw3MTzR9CEHNUBzV&branch=main)](https://travis-ci.com/haotianjin/ubco-mds-data533-lab4-group)
+
 - Manage employees and patients in the hospital.
 
 - Sub-package 1: employee: manage nurses and doctors
