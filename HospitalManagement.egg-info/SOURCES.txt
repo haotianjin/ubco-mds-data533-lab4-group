@@ -1,0 +1,13 @@
+README.md
+setup.py
+HospitalManagement.egg-info/PKG-INFO
+HospitalManagement.egg-info/SOURCES.txt
+HospitalManagement.egg-info/dependency_links.txt
+HospitalManagement.egg-info/top_level.txt
+hospital/__init__.py
+hospital/employee/__init__.py
+hospital/employee/doctor.py
+hospital/employee/nurse.py
+hospital/patient/__init__.py
+hospital/patient/covid_patient.py
+hospital/patient/patients.py
